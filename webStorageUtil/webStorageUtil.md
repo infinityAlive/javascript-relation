@@ -15,24 +15,26 @@ LocalStorage 則是永久儲存在瀏覽器中。
 幫我們儲存資料於瀏覽器中，也會主動偵測瀏覽器是否有支援 Web Storage API，  
 如果未支援，則會改以 Cookie 儲存。  
 
-## WebStorageUtil Function:  
+## WebStorageUtil Function:
+<p>  
 1. saveSingleValue:  
-**參數：key, value**. 
+**參數：key, value**  
 以 key, value 的 mapping 儲存於 SessionStorage 中。  
 (原生 Web Storage API 就是使用 key, value 的方式儲存)  
 
 * Example:  
 `new WebStorageUtil().saveSingleValue('name', 'Yarin');`  
+</p>
   
 2. retrieveSingleValue:  
-**參數：key**. 
+**參數：key**  
 取回儲存於 SessionStorage 中，key 所對應的 value。
 
 * Example:  
 `new WebStorageUtil().retrieveSingleValue('name');`  
   
 3. saveObj:  
-**參數：key, valueObj**. 
+**參數：key, valueObj**  
 與 saveSingleValue 操作方式相同，但是 key 所對應的 valueObj 是一物件，並轉換成 JSON 格式儲存。
 
 * Example:  
@@ -87,6 +89,5 @@ LocalStorage 則是永久儲存在瀏覽器中。
 * Example:  
 `// 參數：key, value, 效期, 網域`  
 `CookieUtils.saveCookie('name', 'Yarin', '1', 'infinity-fantasy.000webhostapp.com');`  
-  
 `CookieUtils.retrieveCookie('name');`  
 `CookieUtils.removeCookie('name');`
