@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script defer type="text/javascript" src="js/webStorageUtils.js"></script>
+  <script defer type="text/javascript" src="js/webStorageUtil.js"></script>
   <script defer type="text/javascript" src="js/index.js"></script>
-  <title>Hello World</title>
+  <title>SessionStorage</title>
 </head>
 <body>
 <div id="formDiv">
@@ -13,18 +13,22 @@
   <input name="figure" type="radio" value="hefty">Hefty
   <input name="figure" type="radio" value="fit">Fit
   <input name="figure" type="radio" value="slim">Slim
-  <h3>Occupation:</h3>
-  <input name="occupation" type="checkbox" value="S">SwordsMan
-  <input name="occupation" type="checkbox" value="W">Warrior
-  <input name="occupation" type="checkbox" value="M">Magician
-  <input name="occupation" type="checkbox" value="H">Healer
-  <input name="occupation" type="checkbox" value="A">Archer
+  <div id="showFigure" style="color: saddlebrown"></div>
+  <h3>Characteristics:</h3>
+  <input name="characteristics" type="checkbox" value="sword">Sword
+  <input name="characteristics" type="checkbox" value="spear">Spear
+  <input name="characteristics" type="checkbox" value="magic">Magic
+  <input name="characteristics" type="checkbox" value="treatment">Treatment
+  <input name="characteristics" type="checkbox" value="bow">Bow
+  <div id="showCharacteristics" style="color: saddlebrown"></div>
   <h3>NormalSkill:</h3>
   <select name="skill">
+    <option value="0">Please select</option>
     <option value="fly">Fly</option>
     <option value="run">Run</option>
     <option value="penetration">Penetration</option>
   </select>
+  <div id="showSkill" style="color: saddlebrown"></div>
 </div>
 </body>
 </html>

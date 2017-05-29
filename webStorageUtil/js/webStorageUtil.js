@@ -78,6 +78,16 @@ function WebStorageUtil() {
   };
 
   /**
+   * Save binding event of specific element in SessionStorage,
+   * When this element put data from SessionStorage,
+   * The binding event of this element must be trigger.
+   */
+  objSelf.saveEvent = function (eventTargetName, eventType) {
+    if (!objSelf.retrieveSingleValue(eventTargetName + '_event'))
+      objSelf.saveSingleValue(eventTargetName + '_event', eventType)
+  };
+
+  /**
    * Remove specific key in SessionStorage and its corresponding value.
    */
   objSelf.removeKey = function (key) {
@@ -127,7 +137,6 @@ function WebStorageUtil() {
         if (!changeObj) {
           changeObj = {};
         }
-
         if (element.type === 'checkbox' && element.checked === true) {
           var checkBoxValues;
           if (changeObj[element.name]) {
@@ -187,7 +196,7 @@ function WebStorageUtil() {
           select.querySelectorAll('option').forEach(function (option) {
             if (option.value === saveElementValue) {
               option.selected = true;
-              tiggerEvent(option);
+              tiggerEvent(select);
             }
           });
         });
@@ -195,29 +204,36 @@ function WebStorageUtil() {
     }
   };
 
-  var tiggerEvent = function (target, eventName) {
+  /**
+   * When load SessionStorage obj value to put in elements of checkbox, radio or select,
+   * if above elements bind an event, this function will be call to trigger event.
+   */
+  var tiggerEvent = function (target) {
     var event;
-
-    if (!eventName)
+    var eventType = objSelf.retrieveSingleValue(target.name + '_event');
+    if (!eventType)
       return;
 
     if ("createEvent" in document) {
       event = document.createEvent("HTMLEvents");
-      event.initEvent(eventName, false, true);
+      event.initEvent(eventType, false, true);
       target.dispatchEvent(event);
     }
     else {
       event = document.createEventObject();
-      target.fireEvent('on' + eventName, event);
+      target.fireEvent('on' + eventType, event);
     }
   }
 };
 
+/**
+ * Operation of Cookie
+ */
 function CookieUtils(domain) {
 }
 
 /**
- * 儲存 cookie
+ * Save key-value mapping by cookie
  */
 CookieUtils.saveCookie = function (key, value, days, domain) {
   var now, milliseconds, expires, cookieContent;
@@ -235,6 +251,9 @@ CookieUtils.saveCookie = function (key, value, days, domain) {
     expires = '';
   }
 
+  /*
+   * The encodeURIComponent function converts the passed string to UTF-8 encoding.
+   */
   cookieContent = key + '=' + encodeURIComponent(value);
   cookieContent += '; domain=' + domain;
   cookieContent += '; expires=' + expires;
@@ -242,32 +261,20 @@ CookieUtils.saveCookie = function (key, value, days, domain) {
   document.cookie = cookieContent;
 };
 
+/**
+ * Retrieve cookie value of specific key
+ */
 CookieUtils.retrieveCookie = function (key) {
-  var arg = key + '=';
-  var argLen = arg.length;
-  var cookieLen = document.cookie.length;
-  var i = 0, j;
-  var endString;
+  var matches = document.cookie.match(new RegExp('(^| )' + key + '=([^;]+)'));
+  if (matches)
+    return decodeURIComponent(matches[2]);
 
-  while (i < cookieLen) {
-    j = i + argLen;
-    if (document.cookie.substring(i, j) == arg) {
-      // 獲得 cookie 解碼後的值
-      endString = document.cookie.indexOf(";", j);
-      if (endString == -1) {
-        endString = cookieLen;
-      }
-      return decodeURIComponent(document.cookie.substring(j, endString));
-    }
-
-    i = document.cookie.indexOf(' ', i) + 1;
-    if (i == 0) {
-      break;
-    }
-  }
   return null;
-};
+}
 
+/**
+ * remove key-value in cookie
+ */
 CookieUtils.removeCookie = function (key) {
   CookieUtils.saveCookie(key, '', -1);
 };
