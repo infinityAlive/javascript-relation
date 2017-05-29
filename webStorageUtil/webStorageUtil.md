@@ -83,7 +83,7 @@ Web Stoage 不會被附加於使用者請求一起送往 Server，因而節省�
 
 * Example:  
 Refer to [index.html](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/index.html)  
-and [index.js](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/index.js)  
+and [index.js](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/js/index.js)  
   
 #### 8. _loadFormChange:_  
 **parameter: id**  
@@ -92,8 +92,8 @@ Through **loadFormChange** will put stored contents to the corresponding element
 > 如果使用者離開或重新整理表單網頁，又 SessionStorage 中有儲存表單內容，透過 **loadFormChange** 會將使用者剛剛輸入的表單內容，一一放回對應的表單元素。
 
 * Example:  
-Refer to [index.html](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/index.html  
-and [index.js](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/index.js)  
+Refer to [index.html](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/index.html)  
+and [index.js](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/js/index.js)  
   
 #### 9. _other functions:_  
 > Store and read the cookie value by relevant function, is written in WebStorageUtil.js.  
