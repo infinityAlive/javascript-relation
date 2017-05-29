@@ -15,45 +15,47 @@ LocalStorage 則是永久儲存在瀏覽器中。
 幫我們儲存資料於瀏覽器中，也會主動偵測瀏覽器是否有支援 Web Storage API，  
 如果未支援，則會改以 Cookie 儲存。  
 
-#### WebStorageUtil Function:
+### WebStorageUtil Function:
 
-##### 1. _saveSingleValue:_  
+#### 1. _saveSingleValue:_  
 **參數：key, value**  
+> GG
+> YY  
 以 key, value 的 mapping 儲存於 SessionStorage 中。  
 (原生 Web Storage API 就是使用 key, value 的方式儲存)  
 
 * Example:  
 `new WebStorageUtil().saveSingleValue('name', 'Yarin');`  
 
-2. _retrieveSingleValue:_  
+#### 2. _retrieveSingleValue:_  
 **參數：key**  
 取回儲存於 SessionStorage 中，key 所對應的 value。
 
 * Example:  
 `new WebStorageUtil().retrieveSingleValue('name');`  
   
-3. _saveObj:_  
+#### 3. _saveObj:_  
 **參數：key, valueObj**  
 與 saveSingleValue 操作方式相同，但是 key 所對應的 valueObj 是一物件，並轉換成 JSON 格式儲存。
 
 * Example:  
 `new WebStorageUtil().saveObj('role', {name: 'Yarin', figure: 'fit'});`  
   
-4. _retrieveObj:_  
+#### 4. _retrieveObj:_  
 **參數：key**  
 如果知道 key 在 SessionStorage 儲存的是物件格式的字串，便可以呼叫此 function 來取回物件。
 
 * Example:  
 `new WebStorageUtil().retrieveObj('role');`  
   
-5. _removeKey:_  
+#### 5. _removeKey:_  
 **參數：key**  
 移除 SessionStorage 所儲存的 key 與其對應的 value。
 
 * Example:  
 `new WebStorageUtil().removeKey('name');`  
   
-6. removeObjProperties:  
+#### 6. _removeObjProperties:_  
 **參數：key, properties**  
 移除一至多個 SessionStorage 儲存之物件的某些 properties。
 
@@ -64,7 +66,7 @@ LocalStorage 則是永久儲存在瀏覽器中。
 `var properties = [figure, skill];`  
 `webStorageUtils.removeObjProperties('role', properties);`  
   
-7. saveFormChange:  
+#### 7. _saveFormChange:_  
 **參數：id**  
 當指定 id 下的表單元素在 change 事件觸發時，會將此元素內容值放進物件，  
 並儲存至 SessionStorage 中，key 為 id，valueObj 為使用者輸入與選擇的內容。
@@ -73,7 +75,7 @@ LocalStorage 則是永久儲存在瀏覽器中。
 參考[index.html](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/index.html)  
 與 [index.js](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/index.js)  
   
-8. loadFormChange:  
+#### 8. _loadFormChange:_  
 **參數：id**  
 如果使用者離開了頁面或重新整理，如果 SessionStorage 中有儲存表單內容，  
 透過此 function 會將使用者剛剛輸入的表單內容，一一放回對應的表單元素。
@@ -82,7 +84,7 @@ LocalStorage 則是永久儲存在瀏覽器中。
 參考[index.html](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/index.html  
 與 [index.js](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/index.js)  
   
-9. 其他：  
+#### 9. _其他：_  
 儲存與讀取 Cookie 值的相關 function，也撰寫於 WebStorageUtil.js 中。
 
 * Example:  
