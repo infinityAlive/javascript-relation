@@ -15,15 +15,9 @@
 > also take the initiative to detect whether the browser has support Web Storage API.  
 > If browser is not supported, will change to save by **Cookie**.  
   
-  Web Stoage 不會被附加於使用者請求一起送往 Server，因而節省了網頁頻寬，  
-而 SessionStorage 和 LocalStorage 差異是在 **儲存效期的不同**，    
-SessionStorage 儲存之資料，在關閉分頁和瀏覽器時就會消失；  
-LocalStorage 則是永久儲存在瀏覽器中。
+Web Stoage 不會被附加於使用者請求一起送往 Server，因而節省了網頁頻寬，而 SessionStorage 和 LocalStorage 差異是在 **儲存效期的不同**，SessionStorage 儲存之資料，在關閉分頁和瀏覽器時就會消失；LocalStorage 則是永久儲存在瀏覽器中。  
 
-  以下是 WebStorageUtil.js 的功能，  
-主要是呼叫 **SessionStorage API** 將資料儲存於瀏覽器中，  
-也會主動偵測瀏覽器是否有支援 Web Storage API，  
-如果未支援，則會改以 **Cookie** 儲存。  
+以下是 WebStorageUtil.js 的功能，主要是呼叫 **SessionStorage API**將資料儲存於瀏覽器中，也會主動偵測瀏覽器是否有支援 Web Storage API，如果未支援，則會改以 **Cookie** 儲存。  
 
 ### WebStorageUtil Function:
 
@@ -40,35 +34,40 @@ LocalStorage 則是永久儲存在瀏覽器中。
 
 #### 2. _retrieveSingleValue:_  
 **參數：key**  
-取回儲存於 SessionStorage 中，key 所對應的 value。
+> Retrieve the value stored in the SessionStorage by key.  
+> 取回儲存於 SessionStorage 中，key 所對應的 value。
 
 * Example:  
 `new WebStorageUtil().retrieveSingleValue('name');`  
   
 #### 3. _saveObj:_  
 **參數：key, valueObj**  
-與 saveSingleValue 操作方式相同，但是 key 所對應的 valueObj 是一物件，並轉換成 JSON 格式儲存。
+> The same way with saveSingleValue, but the valueObj of the corresponding key is an object. It will be  converted to JSON format to save in SessionStorage.  
+> 與 saveSingleValue 操作方式相同，但是 key 所對應的 valueObj 是一物件，將轉換成 JSON 格式儲存於 SessionStorage 中。
 
 * Example:  
 `new WebStorageUtil().saveObj('role', {name: 'Yarin', figure: 'fit'});`  
   
 #### 4. _retrieveObj:_  
 **參數：key**  
-如果知道 key 在 SessionStorage 儲存的是物件格式的字串，便可以呼叫此 function 來取回物件。
+> If you know the key in the SessionStorage is stored by string of object format, you can call **retrieveObj** function to retrieve the object.  
+> 如果知道 key 在 SessionStorage 儲存的是物件格式的字串，便可以呼叫 **retrieveObj** 來取回物件。
 
 * Example:  
 `new WebStorageUtil().retrieveObj('role');`  
   
 #### 5. _removeKey:_  
 **參數：key**  
-移除 SessionStorage 所儲存的 key 與其對應的 value。
+> Remove the key in SessionStorage and its corresponding value.  
+> 移除 SessionStorage 所儲存的 key 與其對應的 value。
 
 * Example:  
 `new WebStorageUtil().removeKey('name');`  
   
 #### 6. _removeObjProperties:_  
 **參數：key, properties**  
-移除一至多個 SessionStorage 儲存之物件的某些 properties。
+> Remove one or more object properties stored in the SessionStorage.  
+> 移除一至多個儲存在 SessionStorage 的物件 properties。
 
 * Example:  
 `var oneRole = {name: 'Yarin', figure: fit, occupation: 'warrior', skill: 'run'};`  
@@ -79,8 +78,8 @@ LocalStorage 則是永久儲存在瀏覽器中。
   
 #### 7. _saveFormChange:_  
 **參數：id**  
-當指定 id 下的表單元素在 change 事件觸發時，會將此元素內容值放進物件，  
-並儲存至 SessionStorage 中，key 為 id，valueObj 為使用者輸入與選擇的內容。
+> When the form element in the specified id is triggered by the change event, the contents of this element are put into the object and stored in SessionStorage. Key is id, valueObj is the content of user input or select.  
+> 當指定 id 下的表單元素在 change 事件觸發時，會將此元素內容值放進物件，並儲存於 SessionStorage 中。其中 key 為 id，valueObj 為使用者輸入或選擇的內容。
 
 * Example:  
 參考[index.html](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/index.html)  
@@ -88,15 +87,17 @@ LocalStorage 則是永久儲存在瀏覽器中。
   
 #### 8. _loadFormChange:_  
 **參數：id**  
-如果使用者離開了頁面或重新整理，如果 SessionStorage 中有儲存表單內容，  
-透過此 function 會將使用者剛剛輸入的表單內容，一一放回對應的表單元素。
+> If user leaves or refreshes form page and there are contents stored in SessionStorage,
+Through **loadFormChange** will put stored contents to the corresponding elements of form one by one.  
+> 如果使用者離開或重新整理表單網頁，又 SessionStorage 中有儲存表單內容，透過 **loadFormChange** 會將使用者剛剛輸入的表單內容，一一放回對應的表單元素。
 
 * Example:  
 參考[index.html](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/index.html  
 與 [index.js](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/index.js)  
   
-#### 9. _其他：_  
-儲存與讀取 Cookie 值的相關 function，也撰寫於 WebStorageUtil.js 中。
+#### 9. _other functions:_  
+> Store and read the cookie value by relevant function, is written in WebStorageUtil.js.  
+> 儲存與讀取 Cookie 值的相關 function，也撰寫於 WebStorageUtil.js 中。
 
 * Example:  
 `// 參數：key, value, 效期, 網域`  
