@@ -1,5 +1,4 @@
-# javascript 相關小程式
-
+# javascript 相關應用  
 #### To write some applications of JavaScript, welcome to share, use and improve!
 #### 這裡不定期會撰寫一些關於 javascript 的應用，歡迎大家分享、運用與改善喔！
 
