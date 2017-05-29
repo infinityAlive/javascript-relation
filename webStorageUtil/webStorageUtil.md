@@ -2,8 +2,14 @@
 
 |                  Web Storage                    |                      Cookie                      |
 |:-----------------------------------------------:|:------------------------------------------------:|
-|   Only save in the client side (User's browser) | Will be sent to the server with the user request |
+|   Only save in the Client side (User's browser) | Will be sent to the Server with user request |
 |            Capacity of Storage is _**5mb**_     |                  _**4kb**_                       |
+
+> Web Stoage can save bandwidth of network because it doesn't sent to Server with user request.
+> The difference between SessionStorage and LocalStorage is their experation.
+> When web page or browser is cloesd, the SessionStorage data will disappear.
+> But LocalStorage is permanently stored in browser.
+
 
 ※ Web Stoage 因為不會被附加於使用者請求中，一起送往 Server，所以會節省網頁頻寬
 
