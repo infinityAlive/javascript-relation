@@ -5,26 +5,25 @@
 |   Only save in the Client side (User's browser) | Will be sent to the Server with user request |
 |            Capacity of Storage is _**5mb**_     |                  _**4kb**_                       |
 
-> Web Stoage can save bandwidth of network  
-> because it doesn't sent to Server with user request.  
+>   Web Stoage can save bandwidth of network because it doesn't sent to Server with user request.  
 > The difference between SessionStorage and LocalStorage is their experation.  
 > When web page or browser is cloesd, the SessionStorage data will disappear.  
 > But LocalStorage is permanently stored in browser.  
 
-> Web Stoage 不會被附加於使用者請求一起送往 Server，因而節省了網頁頻寬，  
-> 而 SessionStorage 和 LocalStorage 差異是在 **儲存效期的不同**，    
-> SessionStorage 儲存之資料，在關閉分頁和瀏覽器時就會消失；  
-> LocalStorage 則是永久儲存在瀏覽器中。
-
-> The following is Function of WebStorageUtil.js.  
-> Function mainly call **SessionStorage API** to store information in browser,  
+>   The following is Functions of WebStorageUtil.js.  
+> Functions mainly call **SessionStorage API** to store information in browser,  
 > also take the initiative to detect whether the browser has support Web Storage API.  
 > If browser is not supported, will change to save by **Cookie**.  
   
-> 以下是 WebStorageUtil.js 的功能，  
-> 主要是呼叫 **SessionStorage API** 將資料儲存於瀏覽器中，  
-> 也會主動偵測瀏覽器是否有支援 Web Storage API，  
-> 如果未支援，則會改以 **Cookie** 儲存。  
+  Web Stoage 不會被附加於使用者請求一起送往 Server，因而節省了網頁頻寬，  
+而 SessionStorage 和 LocalStorage 差異是在 **儲存效期的不同**，    
+SessionStorage 儲存之資料，在關閉分頁和瀏覽器時就會消失；  
+LocalStorage 則是永久儲存在瀏覽器中。
+
+  以下是 WebStorageUtil.js 的功能，  
+主要是呼叫 **SessionStorage API** 將資料儲存於瀏覽器中，  
+也會主動偵測瀏覽器是否有支援 Web Storage API，  
+如果未支援，則會改以 **Cookie** 儲存。  
 
 ### WebStorageUtil Function:
 
