@@ -17,9 +17,9 @@ LocalStorage 則是永久儲存在瀏覽器中。
 
 ## WebStorageUtil Function:
 
-* saveSingleValue:
-**參數：key, value**
-以 key, value 的 mapping 儲存於 SessionStorage 中。
+* saveSingleValue:  
+**參數：key, value**. 
+以 key, value 的 mapping 儲存於 SessionStorage 中。  
 (原生 Web Storage API 就是使用 key, value 的方式儲存)
 
 Example:
@@ -60,18 +60,11 @@ Example:
 移除一至多個 SessionStorage 儲存之物件的某些 properties，
 
 Example:
-`var oneRole = {
-  name: 'Yarin',
-  figure: fit,
-  occupation: 'warrior',
-  skill: 'run'
-};
-
-var webStorageUtils = new WebStorageUtil();
-webStorageUtils.saveObj('role', oneRole);
-
-var properties = [figure, skill];
-webStorageUtils.removeObjProperties('role', properties);`
+`var oneRole = {name: 'Yarin', figure: fit, occupation: 'warrior', skill: 'run'};`  
+`var webStorageUtils = new WebStorageUtil();`. 
+`webStorageUtils.saveObj('role', oneRole);`. 
+`var properties = [figure, skill];`. 
+`webStorageUtils.removeObjProperties('role', properties);`
 
 * saveFormChange:
 **參數：id**
