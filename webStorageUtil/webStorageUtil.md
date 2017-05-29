@@ -42,7 +42,7 @@ Web Stoage 不會被附加於使用者請求一起送往 Server，因而節省�
   
 #### 3. _saveObj:_  
 **parameter: key, valueObj**  
-> The same way with saveSingleValue, but the valueObj of the corresponding key is an object. It will be  converted to JSON format to save in SessionStorage.  
+> The valueObj of the corresponding key is an object. It will be converted to JSON format to save in SessionStorage.  
 > 與 saveSingleValue 操作方式相同，但是 key 所對應的 valueObj 是一物件，將轉換成 JSON 格式儲存於 SessionStorage 中。
 
 * Example:  
@@ -58,7 +58,7 @@ Web Stoage 不會被附加於使用者請求一起送往 Server，因而節省�
   
 #### 5. _removeKey:_  
 **parameter: key**  
-> Remove the key in SessionStorage and its corresponding value.  
+> Remove specific key in SessionStorage and its corresponding value.  
 > 移除 SessionStorage 所儲存的 key 與其對應的 value。
 
 * Example:  
@@ -78,7 +78,7 @@ Web Stoage 不會被附加於使用者請求一起送往 Server，因而節省�
   
 #### 7. _saveFormChange:_  
 **parameter: id**  
-> When the form element in the specified id is triggered by the change event, the contents of this element are put into the object and stored in SessionStorage. Key is id, valueObj is the content of user input or select.  
+> When the form element in the specific id is triggered by the change event, the contents of this element are put into the object and stored in SessionStorage. Key is id, valueObj is the content of user input or select.  
 > 當指定 id 下的表單元素在 change 事件觸發時，會將此元素內容值放進物件，並儲存於 SessionStorage 中。其中 key 為 id，valueObj 為使用者輸入或選擇的內容。
 
 * Example:  

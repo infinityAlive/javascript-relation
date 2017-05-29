@@ -2,7 +2,7 @@
  * 存入與操作 SessionStorage value
  */
 function WebStorageUtil() {
-  var objectSelf = this;
+  var objSelf = this;
   var isSupportWebStorage;
   if (typeof window.sessionStorage === 'object') {
     try {
@@ -19,8 +19,10 @@ function WebStorageUtil() {
     console.log('*** this browser does not support Web Storage API');
   }
 
-
-  objectSelf.saveSingleValue = function (key, value) {
+  /**
+   * To Use key and value to store in SessionStorage.
+   */
+  objSelf.saveSingleValue = function (key, value) {
     if (isSupportWebStorage === true) {
       sessionStorage[key] = value;
     } else {
@@ -28,7 +30,10 @@ function WebStorageUtil() {
     }
   };
 
-  objectSelf.retrieveSingleValue = function (key) {
+  /**
+   * Retrieve the value stored in the SessionStorage by key.
+   */
+  objSelf.retrieveSingleValue = function (key) {
     if (isSupportWebStorage === true) {
       return sessionStorage[key];
     } else {
@@ -36,15 +41,22 @@ function WebStorageUtil() {
     }
   };
 
-  objectSelf.saveObj = function (key, valueObj) {
+  /**
+   * The valueObj of the corresponding key is an object.
+   * It will be converted to JSON format to save in SessionStorage.
+   */
+  objSelf.saveObj = function (key, valueObj) {
     if (typeof valueObj === 'object') {
-      objectSelf.saveSingleValue(key, JSON.stringify(valueObj));
+      objSelf.saveSingleValue(key, JSON.stringify(valueObj));
     } else {
       console.log('valueObj is not an object');
     }
   };
 
-  objectSelf.retrieveObj = function (key) {
+  /**
+   * Retrieve the object stored in the SessionStorage by key.
+   */
+  objSelf.retrieveObj = function (key) {
     var valueObj = {};
     var value;
 
@@ -65,7 +77,10 @@ function WebStorageUtil() {
     return valueObj;
   };
 
-  objectSelf.removeKey = function (key) {
+  /**
+   * Remove specific key in SessionStorage and its corresponding value.
+   */
+  objSelf.removeKey = function (key) {
     if (isSupportWebStorage === true) {
       sessionStorage.removeItem(key);
     } else {
@@ -73,7 +88,10 @@ function WebStorageUtil() {
     }
   }
 
-  objectSelf.removeObjProperties = function (key, properties) {
+  /**
+   * Remove one or more object properties stored in the SessionStorage.
+   */
+  objSelf.removeObjProperties = function (key, properties) {
     var valueObj;
 
     if (isSupportWebStorage === true) {
@@ -92,15 +110,20 @@ function WebStorageUtil() {
       }
     }
 
-    this.saveObj(key, valueObj);
+    objSelf.saveObj(key, valueObj);
   };
 
-  objectSelf.saveFormChange = function (id) {
+  /**
+   * When the form element in the specific id is triggered by the change event,
+   * the contents of this element are put into the object and stored in SessionStorage.
+   * Key is id, valueObj is the content of user input or select.
+   */
+  objSelf.saveFormChange = function (id) {
     var formElements = document.querySelectorAll('#' + id
       + ' input, ' + '#' + id + ' select');
     formElements.forEach(function (element) {
       element.addEventListener('change', function () {
-        var changeObj = objectSelf.retrieveObj(id);
+        var changeObj = objSelf.retrieveObj(id);
         if (!changeObj) {
           changeObj = {};
         }
@@ -118,13 +141,16 @@ function WebStorageUtil() {
           changeObj[element.name] = element.value;
         }
 
-        objectSelf.saveObj(id, changeObj);
+        objSelf.saveObj(id, changeObj);
       })
     });
   };
 
-  objectSelf.loadFormChange = function (id) {
-    var changeObj = objectSelf.retrieveObj(id);
+  /**
+   * Put stored contents to the corresponding elements of form one by one.
+   */
+  objSelf.loadFormChange = function (id) {
+    var changeObj = objSelf.retrieveObj(id);
     var elementName, saveElementValue;
 
     if (!changeObj)
