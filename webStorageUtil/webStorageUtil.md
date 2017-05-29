@@ -12,13 +12,17 @@
 > The following is Functions of WebStorageUtil.js.  
 > Functions mainly call **SessionStorage API** to store information in browser,  
 > also take the initiative to detect whether the browser has support Web Storage API.  
-> If browser is not supported, will change to save by **Cookie**.  
+> If browser is not supported, will change to save by **Cookie**.
+
+We also can refer to [Web Storage API of MDN](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) to understand more about Web Storage API.
   
 我想使用 Web Storage 的最佳時機點是在儲存表單元素的時候，使用者不用因為不小心手誤按下重整之後，結果資料全部都要重打...當然也可以取代 Cookie 來儲存資料。  
 
 Web Stoage 不會被附加於使用者請求一起送往 Server，因而節省了網頁頻寬，而 SessionStorage 和 LocalStorage 差異是在 **儲存效期的不同**，SessionStorage 儲存之資料，在關閉分頁和瀏覽器時就會消失；LocalStorage 則是永久儲存在瀏覽器中。  
 
-以下是 WebStorageUtil.js 的功能，主要是呼叫 **SessionStorage API**將資料儲存於瀏覽器中，也會主動偵測瀏覽器是否有支援 Web Storage API，如果未支援，則會改以 **Cookie** 儲存。  
+以下是 WebStorageUtil.js 的功能，主要是呼叫 **SessionStorage API**將資料儲存於瀏覽器中，也會主動偵測瀏覽器是否有支援 Web Storage API，如果未支援，則會改以 **Cookie** 儲存。
+
+細節可參考 Mozilla Developer Network 的 [Web Storage API 介紹](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API)。
 
 ### WebStorageUtil Function:
 
@@ -62,6 +66,10 @@ Web Stoage 不會被附加於使用者請求一起送往 Server，因而節省�
 > Save binding event of specific element and element name mapping in SessionStorage, when data is put into corresponding element from SessionStorage, The binding event of this element must be trigger.  
 > 儲存表單元素與其綁定的事件於 SessionStorage，如果從 SessionStorage 儲存的資料被放進對應的表單元素，則必須觸發此元素所綁定的事件。
 
+* Example:  
+`new WebStorageUtil().saveEvent('inputName', 'click');`  
+`new WebStorageUtil().saveEvent('selectName', 'change');` 
+
 #### 6. _removeKey:_  
 **parameter: key**  
 > Remove specific key in SessionStorage and its corresponding value.  
@@ -69,6 +77,7 @@ Web Stoage 不會被附加於使用者請求一起送往 Server，因而節省�
 
 * Example:  
 `new WebStorageUtil().removeKey('name');`  
+
   
 #### 7. _removeObjProperties:_  
 **parameter: key, properties**  
