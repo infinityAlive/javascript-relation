@@ -1,6 +1,6 @@
-# javascript 相關應用  
+# JavaScript Application 
 #### To write some applications of JavaScript, welcome to share, use and improve!
-#### 這裡不定期會撰寫一些關於 javascript 的應用，歡迎大家分享、運用與改善喔！
+#### 這裡不定期會撰寫一些關於 JavaScript 的應用，歡迎大家分享、運用與改善喔！
 
 ##### ※ WebStorageUtil.js  
 >To use Web Storage API of HTML5 provided to store data in browser, Can replace Cookie to reduce the bandwidth of network, detail and function can refer to:  

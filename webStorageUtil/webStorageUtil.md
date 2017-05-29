@@ -96,7 +96,7 @@ Refer to [index.html](https://github.com/infinityAlive/javascriptRelation/blob/m
 and [index.js](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/js/index.js)  
   
 #### 9. _other functions:_  
-> Store and read the cookie value by relevant function, is written in WebStorageUtil.js.  
+> Store and read the cookie value by related function, is written in WebStorageUtil.js.  
 > 儲存與讀取 Cookie 值的相關 function，也撰寫於 WebStorageUtil.js 中。
 
 * Example:  
