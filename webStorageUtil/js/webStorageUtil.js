@@ -1,7 +1,7 @@
 /**
  * 存入與操作 SessionStorage value
  */
-function SessionStorageUtils() {
+function WebStorageUtil() {
   var objectSelf = this;
   var isSupportWebStorage;
   if (typeof window.sessionStorage === 'object') {
@@ -12,11 +12,11 @@ function SessionStorageUtils() {
       sessionStorage.removeItem('test');
     } catch (exception) {
       isSupportWebStorage = false;
-      console.log('*** this browser do not support web storage');
+      console.log('*** this browser does not support Web Storage API');
     }
   } else {
     isSupportWebStorage = false;
-    console.log('*** this browser do not support web storage');
+    console.log('*** this browser does not support Web Storage API');
   }
 
 
@@ -37,7 +37,11 @@ function SessionStorageUtils() {
   };
 
   objectSelf.saveObj = function (key, valueObj) {
-    this.saveSingleValue(key, JSON.stringify(valueObj));
+    if (typeof valueObj === 'object') {
+      objectSelf.saveSingleValue(key, JSON.stringify(valueObj));
+    } else {
+      console.log('valueObj is not an object');
+    }
   };
 
   objectSelf.retrieveObj = function (key) {
@@ -52,54 +56,43 @@ function SessionStorageUtils() {
 
     if (value) {
       valueObj = JSON.parse(value);
+
+      if (typeof valueObj !== 'object') {
+        console.log('valueObj is not an object');
+      }
     }
 
     return valueObj;
   };
 
-  objectSelf.removeObj = function (key) {
-    var cookieValue;
-
-    if (isSupportWebStorage === true) {
-      if (!sessionStorage)
-        sessionStorage.removeItem(key);
-    } else {
-      cookieValue = CookieUtils.retrieveCookie(key);
-
-      if (!cookieValue) {
-        CookieUtils.removeCookie(key);
-      }
-    }
-  };
-
-  objectSelf.removeSingleValue = function (key) {
+  objectSelf.removeKey = function (key) {
     if (isSupportWebStorage === true) {
       sessionStorage.removeItem(key);
     } else {
-      removeCookie(key);
+      CookieUtils.removeCookie(key);
     }
   }
 
-  objectSelf.removeObjProperties = function (ObjectKey, property) {
-    var obj;
+  objectSelf.removeObjProperties = function (key, properties) {
+    var valueObj;
 
     if (isSupportWebStorage === true) {
-      obj = JSON.parse(sessionStorage[ObjectKey]);
+      valueObj = JSON.parse(sessionStorage[key]);
     } else {
-      obj = JSON.parse(CookieUtils.retrieveCookie(ObjectKey));
+      valueObj = JSON.parse(CookieUtils.retrieveCookie(key));
     }
 
-    if (!obj) {
-      if (Array.isArray(property)) {
-        property.forEach(function (prop) {
-          delete obj[prop];
+    if (!valueObj && typeof valueObj === 'object') {
+      if (Array.isArray(properties)) {
+        properties.forEach(function (prop) {
+          delete valueObj[prop];
         });
       } else {
-        delete obj[property];
+        delete valueObj[properties];
       }
     }
 
-    this.saveObj(ObjectKey, obj);
+    this.saveObj(key, valueObj);
   };
 
   objectSelf.saveFormChange = function (id) {
@@ -130,8 +123,8 @@ function SessionStorageUtils() {
     });
   };
 
-  this.loadFormChange = function (id) {
-    var changeObj = this.retrieveObj(id);
+  objectSelf.loadFormChange = function (id) {
+    var changeObj = objectSelf.retrieveObj(id);
     var elementName, saveElementValue;
 
     if (!changeObj)
@@ -194,11 +187,8 @@ function SessionStorageUtils() {
   }
 };
 
-function CookieUtils(domain) {}
-
-CookieUtils.removeCookie = function (key) {
-  CookieUtils.saveCookie(key, '', -1);
-};
+function CookieUtils(domain) {
+}
 
 /**
  * 儲存 cookie
@@ -250,4 +240,8 @@ CookieUtils.retrieveCookie = function (key) {
     }
   }
   return null;
+};
+
+CookieUtils.removeCookie = function (key) {
+  CookieUtils.saveCookie(key, '', -1);
 };
