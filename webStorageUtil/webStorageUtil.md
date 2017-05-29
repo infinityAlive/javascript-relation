@@ -18,12 +18,14 @@ LocalStorage 則是永久儲存在瀏覽器中。
 ### WebStorageUtil Function:
 
 #### 1. _saveSingleValue:_  
-**參數：key, value**  
-> GG
-> YY  
-以 key, value 的 mapping 儲存於 SessionStorage 中。  
-(原生 Web Storage API 就是使用 key, value 的方式儲存)  
+**parameter：key, value**
+> To Use key and value to store in SessionStorage.
+> (Native Web Storage API just use key-value mapping to store)
+>  
+> 以 key, value 的 mapping 儲存於 SessionStorage 中。  
+> (原生 Web Storage API 就是使用 key, value 的方式儲存)  
 
+GG
 * Example:  
 `new WebStorageUtil().saveSingleValue('name', 'Yarin');`  
 
