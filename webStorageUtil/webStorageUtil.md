@@ -71,22 +71,21 @@ LocalStorage 則是永久儲存在瀏覽器中。
 
 * Example:  
 參考[index.html](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/index.html)  
-與 [index.js](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/index.js)
-
+與 [index.js](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/index.js)  
 8. loadFormChange:  
 **參數：id**  
 如果使用者離開了頁面或重新整理，如果 SessionStorage 中有儲存表單內容，  
 透過此 function 會將使用者剛剛輸入的表單內容，一一放回對應的表單元素。
 
 * Example:  
-參考[index.html](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/index.html)  
-與 [index.js](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/index.js)
-
+參考[index.html](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/index.html  
+與 [index.js](https://github.com/infinityAlive/javascriptRelation/blob/master/webStorageUtil/index.js)  
 9. 其他：  
 儲存與讀取 Cookie 值的相關 function，也撰寫於 WebStorageUtil.js 中。
 
 * Example:  
 `// 參數：key, value, 效期, 網域`  
 `CookieUtils.saveCookie('name', 'Yarin', '1', 'infinity-fantasy.000webhostapp.com');  
+  
 `CookieUtils.retrieveCookie('name');`  
 `CookieUtils.removeCookie('name');`
