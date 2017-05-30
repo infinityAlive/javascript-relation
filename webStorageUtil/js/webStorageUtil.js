@@ -210,13 +210,15 @@ function WebStorageUtil() {
    */
   var tiggerEvent = function (target) {
     var event;
+    var canBubble, canPreventDefault;
     var eventType = objSelf.retrieveSingleValue(target.name + '_event');
     if (!eventType)
       return;
 
     if ("createEvent" in document) {
+      canBubble = false, canPreventDefault = true;
       event = document.createEvent("HTMLEvents");
-      event.initEvent(eventType, false, true);
+      event.initEvent(eventType, canBubble, canPreventDefault);
       target.dispatchEvent(event);
     }
     else {
@@ -243,9 +245,9 @@ CookieUtils.saveCookie = function (key, value, days, domain) {
       now = new Date();
       milliseconds = days * 24 * 60 * 60 * 1000;
       now.setTime(now.getTime() + milliseconds);
-      expires = now.toGMTString();
+      expires = now.toUTCString();
     } else {
-      expires = 'Thu, 01 Jan 1970 00:00:01 GMT';
+      expires = 'Thu, 01 Jan 1970 00:00:01 UTC';
     }
   } else {
     expires = '';
