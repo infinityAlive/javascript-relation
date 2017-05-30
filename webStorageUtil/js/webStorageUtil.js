@@ -4,6 +4,7 @@
 function WebStorageUtil() {
   var objSelf = this;
   var isSupportWebStorage;
+
   if (typeof window.sessionStorage === 'object') {
     try {
       sessionStorage.setItem('test', 'OK');
@@ -134,18 +135,20 @@ function WebStorageUtil() {
     formElements.forEach(function (element) {
       element.addEventListener('change', function () {
         var changeObj = objSelf.retrieveObj(id);
+        var checkBoxValues;
+
         if (!changeObj) {
           changeObj = {};
         }
-        if (element.type === 'checkbox' && element.checked === true) {
-          var checkBoxValues;
-          if (changeObj[element.name]) {
-            checkBoxValues = changeObj[element.name];
-          } else
-            checkBoxValues = [];
 
-          checkBoxValues.push(element.value);
-          changeObj[element.name] = checkBoxValues;
+        if (element.type === 'checkbox') {
+          checkBoxValues = changeObj[element.name] ? changeObj[element.name] : [];
+          if (element.checked === true) {
+            checkBoxValues.push(element.value);
+            changeObj[element.name] = checkBoxValues;
+          } else {
+            checkBoxValues.splice(checkBoxValues.indexOf(element.value), 1);
+          }
         } else {
           changeObj[element.name] = element.value;
         }
@@ -253,13 +256,12 @@ CookieUtils.saveCookie = function (key, value, days, domain) {
     expires = '';
   }
 
+
   /*
    * The encodeURIComponent function converts the passed string to UTF-8 encoding.
    */
   cookieContent = key + '=' + encodeURIComponent(value);
-  cookieContent += '; domain=' + domain;
   cookieContent += '; expires=' + expires;
-  cookieContent += '; path=/';
   document.cookie = cookieContent;
 };
 
@@ -268,9 +270,9 @@ CookieUtils.saveCookie = function (key, value, days, domain) {
  */
 CookieUtils.retrieveCookie = function (key) {
   var matches = document.cookie.match(new RegExp('(^| )' + key + '=([^;]+)'));
-  if (matches)
+  if (matches) {
     return decodeURIComponent(matches[2]);
-
+  }
   return null;
 }
 
